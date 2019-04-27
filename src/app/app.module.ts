@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CrawlerComponent } from './crawler/crawler.component';
 import { RumorCardComponent } from './rumor-card/rumor-card.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { JumboComponent } from './jumbo/jumbo.component';
@@ -12,7 +11,6 @@ import { JumboComponent } from './jumbo/jumbo.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CrawlerComponent,
     RumorCardComponent,
     NavBarComponent,
     JumboComponent

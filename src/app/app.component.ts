@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { RumorService } from './rumor.service';
+import Rumor from './rumor';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'miniature-rumor-db';
+  	title: string = 'miniature-rumor-db';
+  	rumors: Rumor[] = [];
+
+  	constructor (private rumorService: RumorService) {
+  	}
+
+  	ngOnInit() {
+		this.rumorService.getAll().subscribe((rumors: Rumor[]) => {
+			this.rumors = rumors;
+		});
+  	}
 }

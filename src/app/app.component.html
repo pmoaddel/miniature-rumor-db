@@ -2,6 +2,10 @@
 
 <app-jumbo></app-jumbo>
 
-<app-crawler></app-crawler>
+<div class="row">
+  <div *ngFor="let rumor of rumors" class="col-sm-3" >
+    <app-rumor-card [rumor]="rumor"> </app-rumor-card>
+  </div>
+</div>
 
 <router-outlet></router-outlet>
