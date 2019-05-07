@@ -7,13 +7,19 @@ import { AppComponent } from './app.component';
 import { RumorCardComponent } from './rumor-card/rumor-card.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { JumboComponent } from './jumbo/jumbo.component';
+import { RumorListComponent } from './rumor-list/rumor-list.component';
+import { RumorDetailComponent } from './rumor-detail/rumor-detail.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RumorCardComponent,
     NavBarComponent,
-    JumboComponent
+    JumboComponent,
+    RumorListComponent,
+    RumorDetailComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

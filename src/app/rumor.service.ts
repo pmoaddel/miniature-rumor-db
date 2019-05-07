@@ -29,6 +29,7 @@ export class RumorService {
 					jsonRumors.pages.forEach((page) => {
 						this.rumors.push(new Rumor(page));
 					});
+					//sort rumors - newest first
 					this.rumors.sort((a: Rumor, b: Rumor) => {
 						return a.postedDate > b.postedDate ? - 1 : a.postedDate < b.postedDate ? 1 : 0;
 					});
