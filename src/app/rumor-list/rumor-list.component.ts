@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { RumorService } from '../rumor.service';
 import Rumor from '../rumor';
 
 
 @Component({
  	selector: 'app-rumor-list',
-    templateUrl: './rumor-list.component.html',
+  templateUrl: './rumor-list.component.html',
 	styleUrls: ['./rumor-list.component.scss']
 })
 export class RumorListComponent implements OnInit {
+    @Input() displayNumber: number;
 
     rumors: Rumor[] = [];
 
@@ -16,8 +17,8 @@ export class RumorListComponent implements OnInit {
   	}
 
   	ngOnInit() {
-		this.rumorService.getAll().subscribe((rumors: Rumor[]) => {
-			this.rumors = rumors;
-		});
+  		this.rumorService.getAll().subscribe((rumors: Rumor[]) => {
+  			this.rumors = this.displayNumber ? rumors.splice(0, this.displayNumber) : rumors;
+  		});
   	}
 }

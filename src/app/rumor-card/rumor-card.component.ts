@@ -9,18 +9,18 @@ import Rumor from '../rumor'
 
 export class RumorCardComponent implements OnInit {
 	defaultRumor: Rumor = new Rumor({
-	    title: 'Gear Thing',
+	    title: '<EXAMPLE RUMOR>',
 	    imageUrls: ['https://www.warhammer-community.com/wp-content/uploads/2019/04/RumourEngine-Apr16-Content2ujcds.jpg'],
-		description: 'This looks like a gear',
+		description: 'This is a hard coded example that lives in the rumor card component.',
 		postedDateString: 'Post 01/01/2010',
 		isSolved: false,
-		pageUrl: '' 
+		pageUrl: ''
 	});
-	
+
 	@Input() rumor: Rumor;
 
-	constructor() { 
-		
+	constructor() {
+
 	}
 
 	ngOnInit() {

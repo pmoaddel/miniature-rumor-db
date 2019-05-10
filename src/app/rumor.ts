@@ -1,4 +1,6 @@
 export default class Rumor {
+
+  id: string;
 	title: string;
 	imageUrls: string[];
 	pageUrl: string;
@@ -9,6 +11,7 @@ export default class Rumor {
 
 
 	constructor(json: any) {
+    this.id = json.id as string || hashFromString(json.title as string);
 		this.title = json.title as string;
 		this.imageUrls = json.imageUrls as string[];
 		this.pageUrl = json.pageUrl as string;
@@ -26,4 +29,22 @@ export default class Rumor {
 			this.postedDate = new Date(year, month, day);
 		}
 	}
+}
+
+function hashFromString(title : string) {
+  let hash = 0;
+  if (title.length == 0) return hash.toString();
+  for (var i = 0; i < title.length; i++) {
+  	const char = title.charCodeAt(i);
+  	hash = ((hash<<5)-hash)+char;
+  	hash = hash & hash; // Convert to 32bit integer
+  }
+  return hash.toString();
+}
+
+function guidGenerator(): string {
+    var S4 = function() {
+       return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+    };
+    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
 }

@@ -17,27 +17,34 @@ export class RumorService {
   	}
 
   	private load(): Observable<any> {
- 		return this.http.get(this.rumorsUrl).pipe(
- 			tap(_ => console.log('loaded rumors'))
-        );
-	}
-
-	getAll(): Observable<Rumor[]> {
-		if (!this.rumors.length) {
-			return this.load().pipe(
-				map((jsonRumors) => {
+ 		  return this.http.get(this.rumorsUrl).pipe(
+ 			  tap(_ => console.log('loaded rumors')),
+        map((jsonRumors: any) => {
 					jsonRumors.pages.forEach((page) => {
 						this.rumors.push(new Rumor(page));
 					});
 					//sort rumors - newest first
-					this.rumors.sort((a: Rumor, b: Rumor) => {
+					return this.rumors.sort((a: Rumor, b: Rumor) => {
 						return a.postedDate > b.postedDate ? - 1 : a.postedDate < b.postedDate ? 1 : 0;
 					});
-					return this.rumors;
-				})
-			);
-		} else {
-			return of(this.rumors);
-		}
+        })
+      );
+	  }
+
+	getAll(): Observable<Rumor[]> {
+    const rumors$ : Observable<Rumor[]> = this.rumors.length ? of(this.rumors) : this.load();
+    return rumors$.pipe(
+      map((rumors) => {
+        return rumors.slice();
+      }));
 	}
+
+  get(id: string): Observable<Rumor> {
+    let rumors$ : Observable<Rumor[]> = this.rumors.length ? of(this.rumors) : this.load();
+    return rumors$.pipe(
+      map((rumors) => {
+        return this.rumors.find((rumor) => { return rumor.id === id; });
+      })
+    );
+  }
 }
