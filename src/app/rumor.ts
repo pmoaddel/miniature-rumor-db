@@ -17,7 +17,7 @@ export default class Rumor {
 		this.pageUrl = json.pageUrl as string;
 		this.description = json.description as string;
 		this.postedDateString = json.datePosted as string;
-		this.isSolved = false;
+		this.isSolved = json.isSolved || false;
 
 		if (json.datePosted) {
 			//example Posted 07/06/2017

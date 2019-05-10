@@ -1,5 +1,8 @@
 <div class="card">
-  <img class="card-img-top" src={{rumor.imageUrls[0]}}>
+  <div class="imgContainer">
+    <img class="card-img-top" [ngClass]="{'solved-image': rumor.isSolved}" src={{rumor.imageUrls[0]}}>
+    <div *ngIf="rumor.isSolved" class="solved-text"> Solved! </div>
+  </div>
   <div class="card-body">
     <h5 class="card-title">{{rumor.title}}</h5>
     <h6 class="card-subtitle mb-2 text-muted">{{rumor.postedDateString}}</h6>

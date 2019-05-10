@@ -8,4 +8,21 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  .solved-image {
+    filter: opacity(25%)
+  }
+  .solved-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: red;
+    font-size: xx-large;
+    font-weight: 700;
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  .imgContainer {
+    position: relative;
+    text-align: center;
+  }
 }
