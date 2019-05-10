@@ -1,7 +1,15 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-8">
-      <app-rumor-card [rumor]="rumor"> </app-rumor-card>
+<div class="details-page container">
+  <div class="row">
+    <div class="card border-light">
+      <div *ngFor="let imageUrl of rumor.imageUrls" class="text-center">
+        <img class="card-img-top" src={{imageUrl}}>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{rumor.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{rumor.postedDateString}}</h6>
+        <p class="card-text">{{rumor.description}}</p>
+        <a href="{{rumor.pageUrl}}" class="card-link">Community Post</a>
+      </div>
     </div>
   </div>
-</div>
+<div>

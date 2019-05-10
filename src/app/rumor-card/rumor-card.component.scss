@@ -1,0 +1,11 @@
+.card {
+  max-height: 600px;
+  max-width: 350px;
+  margin-bottom: 20px;
+
+  .card-body {
+    max-height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
