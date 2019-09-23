@@ -1,0 +1,40 @@
+<div class="container">
+  <form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Community Page Url</label>
+      <input [(ngModel)]="url" name="url" class="form-control" placeholder="e.g. https://www.warhammer-community.com/2019/09/17/the-rumour-engine-september-17th-2019/">
+    </div>
+    <button type="submit" (click)="submitRumor()" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<div class="container" *ngIf="error">
+  <div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">{{error.statusText}}</h4>
+  <p>{{error.message}}</p>
+  <hr>
+  <p class="mb-0">{{error.url}}</p>
+</div>
+
+<div class="container" *ngIf="results">
+  <div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">{{results.statusText}}</h4>
+  <p>{{results.message}}</p>
+  <hr>
+  <p class="mb-0">{{results}}</p>
+</div>
+<!-- <div class="details-page container">
+  <div class="row">
+    <div class="card border-light">
+      <div *ngFor="let imageUrl of rumor.imageUrls" class="text-center">
+        <img class="card-img-top" src={{imageUrl}}>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{rumor.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{rumor.postedDateString}}</h6>
+        <p class="card-text">{{rumor.description}}</p>
+        <a href="{{rumor.pageUrl}}" class="card-link">Community Post</a>
+      </div>
+    </div>
+  </div>
+<div> -->

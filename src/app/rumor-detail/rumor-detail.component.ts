@@ -4,6 +4,8 @@ import { map, flatMap, tap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { RumorService } from '../rumor.service';
 import Rumor from '../rumor';
+import { FormBuilder } from '@angular/forms';
+
 
 
 @Component({

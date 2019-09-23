@@ -8,7 +8,8 @@ import Rumor from './rumor';
   providedIn: 'root'
 })
 export class RumorService {
-	rumorsUrl: string = 'http://localhost:4200/assets/rumors.json';
+	rumorsUrl: string = 'https://mzvihmw7m2.execute-api.us-east-1.amazonaws.com/dev/rumors';
+  submissionUrl: string = 'https://mzvihmw7m2.execute-api.us-east-1.amazonaws.com/dev/rumors/submission';
 	private rumors: Rumor[] = [];
 
  	constructor(
@@ -19,8 +20,8 @@ export class RumorService {
   	private load(): Observable<any> {
  		  return this.http.get(this.rumorsUrl).pipe(
  			  tap(_ => console.log('loaded rumors')),
-        map((jsonRumors: any) => {
-					jsonRumors.pages.forEach((page) => {
+        map((rumors: any) => {
+					rumors.forEach((page) => {
 						this.rumors.push(new Rumor(page));
 					});
 					//sort rumors - newest first
@@ -44,6 +45,15 @@ export class RumorService {
     return rumors$.pipe(
       map((rumors) => {
         return this.rumors.find((rumor) => { return rumor.id === id; });
+      })
+    );
+  }
+
+  submit(url: string): Observable<any> {
+    return this.http.post(this.submissionUrl, { url }).pipe(
+      tap(_ => console.log('submitted rumor')),
+      map((response) => {
+        return response;
       })
     );
   }
