@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { AuthService } from './auth.service';
 import { catchError, tap, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import Rumor from './rumor';
@@ -13,7 +14,8 @@ export class RumorService {
 	private rumors: Rumor[] = [];
 
  	constructor(
- 	 	private http: HttpClient) {
+ 	 	private http: HttpClient,
+    private authService: AuthService) {
 
   	}
 
@@ -50,7 +52,15 @@ export class RumorService {
   }
 
   submit(url: string): Observable<any> {
-    return this.http.post(this.submissionUrl, { url }).pipe(
+    // if (!this.authService.accessToken) {
+    //   throw new Error('Cannot submit rumor. No access token found. Do you need to log in?');
+    // }
+    const options = {
+      headers: {
+        Authorization: `Bearer ${this.authService.accessToken}`
+      }
+    };
+    return this.http.post(this.submissionUrl, { url }, options).pipe(
       tap(_ => console.log('submitted rumor')),
       map((response) => {
         return response;
